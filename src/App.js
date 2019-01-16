@@ -5,15 +5,14 @@ import SettingsPage from './components/Pages/SettingsPage';
 import './styles/App.css';
 
 class App extends Component {
-
   state = {
-    page: 'Clock'
+    page: 'Clock',
   }
 
   setPage = () => {
     const page = this.state.page === 'Clock' ? 'Settings' : 'Clock';
     this.setState({
-      page
+      page,
     });
   }
 
@@ -21,12 +20,12 @@ class App extends Component {
     const { page } = this.state;
     return (
       <div className="App">
-        <ActionBar settingsAction={this.setPage} arrow={page !== 'Clock'}/>
+        <ActionBar settingsAction={this.setPage} arrow={page !== 'Clock'} />
         <div className="App-header">
           {
-            page === 'Clock' ?
-            <ClockDisplay /> :
-            <SettingsPage />
+            page === 'Clock'
+              ? <ClockDisplay />
+              : <SettingsPage />
           }
         </div>
       </div>
