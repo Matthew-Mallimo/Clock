@@ -1,25 +1,34 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import ClockDisplay from './components/ClockDisplay';
+import ActionBar from './components/ActionBar';
+import SettingsPage from './components/Pages/SettingsPage';
+import './styles/App.css';
 
 class App extends Component {
+
+  state = {
+    page: 'Clock'
+  }
+
+  setPage = () => {
+    const page = this.state.page === 'Clock' ? 'Settings' : 'Clock';
+    this.setState({
+      page
+    });
+  }
+
   render() {
+    const { page } = this.state;
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <ActionBar settingsAction={this.setPage} arrow={page !== 'Clock'}/>
+        <div className="App-header">
+          {
+            page === 'Clock' ?
+            <ClockDisplay /> :
+            <SettingsPage />
+          }
+        </div>
       </div>
     );
   }
